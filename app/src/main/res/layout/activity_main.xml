@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!-- <com.google.android.exoplayer2.ui.PlayerView
+         android:id="@+id/player_view"
+         android:layout_width="match_parent"
+         android:layout_height="350dp"
+         app:repeat_toggle_modes="all" >
+
+     </com.google.android.exoplayer2.ui.PlayerView>
+
+ -->
+
+    <!--
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+        <Button
+            android:text="speak"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:id="@+id/takeinput"
+
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:id="@+id/playexo"
+            android:text="play"
+
+
+
+            />
+
+ -->
+
+    <!--
+          </LinearLayout>
+
+           <Button
+               android:id="@+id/save"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="saveyourvideo" />
+
+
+       </LinearLayout>
+
+
+       -->
+
+
+    <ImageView
+        android:id="@+id/clover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="350dp"
+        android:elevation="6dp"
+        android:src="@drawable/clover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/textsplash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:elevation="6dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You are Beautiful, The way you are"
+            android:textColor="#FFF"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.652"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="363dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yeah.You"
+            android:textColor="#FFF"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="178dp"
+            tools:layout_editor_absoluteY="395dp" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/texthome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginEnd="156dp"
+        android:elevation="6dp"
+        android:gravity="left"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.069">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Explore"
+            android:textColor="#FFF"
+            android:textSize="24sp"
+            tools:layout_editor_absoluteX="68dp"
+            tools:layout_editor_absoluteY="47dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Simply make design good"
+            android:textColor="#FFF"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/menus"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="204dp"
+        android:elevation="6dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="70dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/speak"
+                    android:layout_width="120dp"
+                    android:layout_height="78dp"
+                    android:layout_marginBottom="40dp"
+                    android:src="@drawable/mic2"
+                    tools:layout_editor_absoluteX="162dp"
+                    tools:layout_editor_absoluteY="536dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Speak"
+                    android:textColor="#0E1843"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/play"
+                    android:layout_width="120dp"
+                    android:layout_height="78dp"
+                    android:layout_marginBottom="40dp"
+                    android:src="@drawable/play"
+                    tools:layout_editor_absoluteX="162dp"
+                    tools:layout_editor_absoluteY="536dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Play"
+                    android:textColor="#0E1843"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="70dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/list"
+                    android:layout_width="120dp"
+                    android:layout_height="78dp"
+                    android:layout_marginBottom="40dp"
+                    android:src="@drawable/list"
+                    tools:layout_editor_absoluteX="162dp"
+                    tools:layout_editor_absoluteY="536dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="List"
+                    android:textColor="#0E1843"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/save"
+                    android:layout_width="120dp"
+                    android:layout_height="78dp"
+                    android:layout_marginBottom="40dp"
+                    android:src="@drawable/save"
+                    tools:layout_editor_absoluteX="162dp"
+                    tools:layout_editor_absoluteY="536dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Save"
+                    android:textColor="#0E1843"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/bgapp"
+        android:layout_width="526dp"
+        android:layout_height="910dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginBottom="150dp"
+        android:scaleType="fitXY"
+
+
+        android:src="@drawable/bgapp"
+        android:translationY="-500dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
