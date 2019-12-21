@@ -33,6 +33,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.android.exoplayer:exoplayer:2.9.6'
     implementation 'com.googlecode.mp4parser:isoparser:1.1.9'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
 
 }

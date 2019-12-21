@@ -15,6 +15,7 @@ import android.os.Environment;
 import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.coremedia.iso.boxes.Container;
 import com.google.android.exoplayer2.ExoPlayer;
@@ -36,7 +37,10 @@ import com.googlecode.mp4parser.authoring.tracks.AppendTrack;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
@@ -49,12 +53,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ArrayList<String> Inputarray=new ArrayList<String>();
     String tosplit;
     String[] splitter;
-    Button takeinput,playexo,save;
+    Button takeinput,playexo,save,showsavedvideo;
     PlayerView playerView;
     SimpleExoPlayer simpleExoPlayer;
 
     HashMap<String,String> readyforvideo=new HashMap<>();
-    int i=0;
+boolean i=false;
     String path;
     ArrayList<String>paths=new ArrayList<String>();
 
@@ -73,17 +77,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         playexo=findViewById(R.id.playexo);
         playerView=findViewById(R.id.player_view);
         save=findViewById(R.id.save);
+        showsavedvideo=findViewById(R.id.showsavedvideo);
+        showsavedvideo.setOnClickListener(this);
+
 
         takeinput.setOnClickListener(this);
         playexo.setOnClickListener(this);
         save.setOnClickListener(this);
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(this);
          datasourcefactory=new DefaultDataSourceFactory(this, Util.getUserAgent(this, "completeproject"));
+          path=getApplicationContext().getExternalCacheDir().getPath()+"/"+"videotorun"+"/";
+         File fileforstrorage=new File(path);
+         if(!fileforstrorage.exists())
+         {
+             fileforstrorage.mkdirs();
+
+         }
+         copy(path,"v.mp4");
+         copy(path,"b.mp4");
 
 
-
-
-       persmission(Manifest.permission.CALL_PHONE);
 
     }
     void persmission (String  permissi)
@@ -144,7 +157,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Inputarray  =data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     tosplit=Inputarray.get(0);
                       splitter=tosplit.split(" ");
+                    i=true;
                       //show(""+splitter[1]);
+                    paths.clear();
 
 
 
@@ -161,21 +176,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
    void readythehasmap()
     {
-        readyforvideo.put("কে","v.mp4.mp4");
-        readyforvideo.put("আমার","b.mp4.mp4");
+        readyforvideo.put("কে","v.mp4");
+        readyforvideo.put("আমার","b.mp4");
 
 
     }
     void readythepath()
 
-    {    paths.clear();
-        path= Environment.getExternalStorageDirectory().getAbsolutePath();
-    File pa;
+    {
+
+
 
         for (int k=0;k<splitter.length;k++) {
-            //show(""+splitter.length);
-            if (readyforvideo.get(splitter[k])!=null) {
+
+      //  show("before"+splitter[k]);
+            if (readyforvideo.containsKey(splitter[k])) {
+
+
                 paths.add(path + "/" + readyforvideo.get(splitter[k]) + "/");
+               // show("after"+paths.get(k));
+
             }
 
 
@@ -200,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             MediaSource[] mediaSources;
 
-            mediaSources = new MediaSource[splitter.length];
+            mediaSources = new MediaSource[paths.size()];
 
 
             for (int j = 0; j < paths.size(); j++) {
@@ -268,7 +288,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
         Container out=new DefaultMp4Builder().build(result);
-        String pat= Environment.getExternalStorageDirectory().getAbsolutePath();
+        String pat= getApplicationContext().getExternalCacheDir().getPath()+"/"+"savedvideo"+"/";
+        File fileforsavevideo=new File(pat);
+        if(!fileforsavevideo.exists())
+        {
+            fileforsavevideo.mkdirs();
+
+        }
         long timestamp=new Date().getTime();
         String b="sonamoni"+timestamp+".mp4";
 
@@ -298,20 +324,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v.getId()==R.id.takeinput)
         {
-            i++;
+
             getspeechInput ();
+
+
 
 
         }
         if(v.getId()==R.id.playexo)
         {
-            //checkforami();
-           readythehasmap();
-          readythepath();
-         readymediasorce();
-        exoplayer();
-        show(""+paths.get(0));
+            if(i==true) {
+                 show(""+i);
+                readythehasmap();
+                readythepath();
+                if(!paths.isEmpty()) {
 
+                   //show("i am here");
+                    readymediasorce();
+                    exoplayer();
+
+                   // i = true;
+                }
+              else {
+                    Toast.makeText(this,"these videos will be added in our database soon...",Toast.LENGTH_SHORT).show();
+                }
+            }
+            {
+                Toast.makeText(this,"please give speech input first",Toast.LENGTH_SHORT).show();
+
+            }
 
 
            //simpleExoPlayer= simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(this);
@@ -332,7 +373,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 show(""+e);
             }
         }
+        if(v.getId()==R.id.showsavedvideo)
+        {
+            Intent i=new Intent(this,showmyresult.class);
+            startActivity(i);
+
+        }
 
     }
+    void copy(String path,String fileforstorage) {
+        InputStream in = null;
+        OutputStream out = null;
+        try {
+
+            in = getResources().openRawResource(R.raw.b);
+
+            File fi = new File(path, fileforstorage);
+            out = new FileOutputStream(fi);
+            byte[] a = new byte[1024];
+            int read = 0;
+            try {
+                while ((read = in.read(a)) != -1) {
+                    out.write(a, 0, read);
+                }
+
+            } catch (Exception e) {
+                show("exception come from fucking  stream write from read " + e);
+
+            }
+        } catch (FileNotFoundException ex) {
+            show("fucked by output stream" + ex);
+            ex.printStackTrace();
+        }
+
+    }
+
+
 
 }
